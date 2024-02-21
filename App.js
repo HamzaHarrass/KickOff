@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import store from './store';
+import HomeScreen from './screens/HomeScreen';
+import MatchesScreen from './screens/MatchesScreen';
+const Stack = createStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>la casa del js</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+    <NavigationContainer>
+   <Stack.Navigator>
+      <Stack.Screen name="Home" options={{headerShown:false}}  component={HomeScreen} />
+      <Stack.Screen name="Matches" options={{headerShown:false}}  component={MatchesScreen} />
+    </Stack.Navigator>
+    </NavigationContainer></Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
