@@ -17,7 +17,7 @@ const App = () => {
    <Stack.Navigator>
       <Stack.Screen name="Home" options={{headerShown:false}}  component={HomeScreen} />
       <Stack.Screen name="Matches" options={{headerShown:false}}  component={MatchesScreen} />
-      <Stack.Screen name="MatchDetails" options={{headerShown:true, title:"", headerShadowVisible:false,headerStyle:{backgroundColor:"#FFFF00"}}}  component={MatchDetailsScreen}/>
+      <Stack.Screen name="MatchDetails" options={{headerShown:true, title:"", headerShadowVisible:false,headerStyle:{backgroundColor:"#F2F2F2"}}}  component={MatchDetailsScreen}/>
     </Stack.Navigator>
     </NavigationContainer></Provider>
   );
