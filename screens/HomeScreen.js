@@ -5,7 +5,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/025b29dbee572c3c30cb668703aa570c.jpg')}
+        source={require('../assets/Group 717.png')}
         style={styles.backgroundImage}
       >
         <Text style={styles.heading}>Bienvenue sur l'application de Football</Text>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    height:'100%',
   },
   heading: {
     fontSize: 24,

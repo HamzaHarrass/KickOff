@@ -2,12 +2,19 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMatches, setSelectedLeague } from '../reducers/matchesReducer';
+import { useNavigation } from '@react-navigation/native'; 
 import axios from 'axios';
 
 const MatchesScreen = () => {
   const dispatch = useDispatch();
   const matches = useSelector(state => state.matches.matches);
+  const navigation = useNavigation(); 
 
+  const handleClick = (match) => {
+    dispatch(setSelectedLeague(match.league));
+    navigation.navigate('MatchDetails', { matchId: match.id }); 
+  };
+  
   useEffect(() => {
     const fetchMatches = async () => {
       try {
@@ -21,7 +28,7 @@ const MatchesScreen = () => {
   }, []);
 
   const renderItem = ({ item }) => (
-    <View style={styles.matchItem}>
+    <TouchableOpacity onPress={() => handleClick(item)} style={styles.matchItem}>
       <Image source={{ uri: item.league.image_path }} style={styles.teamLogo} />
       <View style={styles.matchDetails}>
         <View style={styles.teamsContainer}>
@@ -33,11 +40,10 @@ const MatchesScreen = () => {
           <View style={{flexDirection:"row", width:100, gap:4, justifyContent:"flex-start",backgroundColor:"white", alignItems:"center"}}>
           <Image source={{ uri: item.participants[1].image_path }} style={styles.teamLogo} /> 
           <Text numberOfLines={1} style={styles.teamName}>{item.participants[1].name}</Text>
-          
           </View>
           </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
   
 
@@ -49,11 +55,7 @@ const MatchesScreen = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
       />
-      <TouchableOpacity
-        title="Filtrer par ligue"
-        onPress={() => dispatch(setSelectedLeague(271))}
-      >
-        </TouchableOpacity>
+      {/* Vous pouvez ajouter d'autres éléments ici, par exemple un bouton pour filtrer par ligue */}
     </View>
   );
 };
