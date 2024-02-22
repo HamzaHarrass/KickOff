@@ -26,7 +26,7 @@ const EquipeScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.teamContainer}>
-      <Image source={{ uri: item.logo_path }} style={styles.teamLogo} />
+      <Image source={{ uri: item.image_path }} style={styles.teamLogo} />
       <Text style={styles.teamName}>{item.name}</Text>
     </View>
   );
@@ -47,6 +47,7 @@ const EquipeScreen = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.flatListContent}
+        numColumns={2} 
       />
     </View>
   );
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     alignItems: 'center',
+    justifyContent: 'space-between', 
   },
   teamContainer: {
     flexDirection: 'row',
@@ -82,6 +84,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    flex: 1,
+    margin: 5,
+    maxWidth: '48%', 
   },
   teamLogo: {
     width: 50,

@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import MatchesScreen from './screens/MatchesScreen';
 import MatchDetailsScreen from './screens/MatchDetailsScreen'
 import EquipesScreen from './screens/EquipesScreen';
+import PlayerScreen from './screens/PlayerScreen'
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -17,8 +18,9 @@ const App = () => {
    <Stack.Navigator>
       <Stack.Screen name="Home" options={{headerShown:false}}  component={HomeScreen} />
       <Stack.Screen name="Matches" options={{headerShown:false}}  component={MatchesScreen} />
-      <Stack.Screen name="Equipes" options={{headerShown:false}}  component={EquipesScreen} />
       <Stack.Screen name="MatchDetails" options={{headerShown:true, title:"", headerShadowVisible:false,headerStyle:{backgroundColor:"#F2F2F2"}}}  component={MatchDetailsScreen}/>
+      <Stack.Screen name="Equipes" options={{headerShown:false }}  component={EquipesScreen} />
+      <Stack.Screen name="Player" options={{headerShown:false }}  component={PlayerScreen} />
     </Stack.Navigator>
     </NavigationContainer></Provider>
   );
