@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTeamsRequest, fetchTeamsSuccess, fetchTeamsFailure } from '../reducers/equipeReducer';
 
-const EquipeScreen = () => {
+const EquipeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const teams = useSelector(state => state.equipe.teams);
   const loading = useSelector(state => state.equipe.loading);
@@ -13,7 +13,7 @@ const EquipeScreen = () => {
     const fetchTeams = async () => {
       dispatch(fetchTeamsRequest());
       try {
-        const response = await axios.get('https://api.sportmonks.com/v3/football/teams', {headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
+        const response = await axios.get('https://api.sportmonks.com/v3/football/teams?include=players', {headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
         dispatch(fetchTeamsSuccess(response.data.data));
       } catch (error) {
         console.error('Error fetching teams:', error);
@@ -24,11 +24,17 @@ const EquipeScreen = () => {
     fetchTeams();
   }, [dispatch]);
 
+  const handleTeamPress = (team) => {
+    navigation.navigate('Player', { team });
+  };
+
   const renderItem = ({ item }) => (
-    <View style={styles.teamContainer}>
-      <Image source={{ uri: item.image_path }} style={styles.teamLogo} />
-      <Text style={styles.teamName}>{item.name}</Text>
-    </View>
+    <TouchableOpacity onPress={() => handleTeamPress(item)}>
+      <View style={styles.teamContainer}>
+        <Image source={{ uri: item.image_path }} style={styles.teamLogo} />
+        <Text style={styles.teamName}>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   if (loading) {
