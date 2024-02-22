@@ -10,10 +10,14 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text style={styles.heading}>Bienvenue sur l'application de Football</Text>
         <TouchableOpacity
-          title="Afficher les matchs"
           style={styles.button}
           onPress={() => navigation.navigate('Matches')}>
            <Text style={styles.buttonText}>Afficher les matchs</Text>
+         </TouchableOpacity>
+         <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Matches')}>
+           <Text style={styles.buttonText}>Afficher les équipes</Text>
          </TouchableOpacity>
       </ImageBackground>
     </View>

@@ -14,9 +14,9 @@ const MatchDetails = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.errorText}>Match not found</Text>
-        {/* <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
           <Text style={styles.buttonText}>Back to Matches</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     );
   }
@@ -46,9 +46,9 @@ const MatchDetails = () => {
       <Text style={styles.text}>{match.result_info}</Text>
       </View>
      
-      {/* <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
         <Text style={styles.buttonText}>Back to Matches</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 };

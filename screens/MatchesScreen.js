@@ -18,7 +18,7 @@ const MatchesScreen = () => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=participants.players;league',{headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
+        const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=participants;league',{headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
         dispatch(setMatches(response.data.data));
       } catch (error) {
         console.error('Error fetching matches:', error);
