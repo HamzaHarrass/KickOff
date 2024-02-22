@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92795a05-1e4c-44b7-a645-9aec129160c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reducers/teamReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/EquipesScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/MatchDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MatchDetailsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/MatchesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MatchesScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/actions/teamActions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
