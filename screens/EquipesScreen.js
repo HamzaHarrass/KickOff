@@ -29,10 +29,10 @@ const EquipeScreen = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleTeamPress(item)}>
-      <View style={styles.teamContainer}>
+    <TouchableOpacity onPress={() => handleTeamPress(item)} style={{width:180, height:100}}>
+      <View style={{backgroundColor:"white", marginHorizontal:4, flexDirection:"row", alignItems:"center",padding:8, borderRadius:12}}>
         <Image source={{ uri: item.image_path }} style={styles.teamLogo} />
-        <Text style={styles.teamName}>{item.name}</Text>
+        <Text numberOfLines={1} style={[styles.teamName, {width:80}]}>{item.name}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -76,23 +76,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
   },
   teamContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    flex: 1,
-    margin: 5,
-    maxWidth: '48%', 
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // backgroundColor: '#fff',
+    // padding: 10,
+    // borderRadius: 10,
+    // marginBottom: 10,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+    // elevation: 5,
+    // flex: 1,
+    // margin: 5,
+    // maxWidth: '48%', 
   },
   teamLogo: {
     width: 50,

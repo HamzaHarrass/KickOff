@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
 const PlayerScreen = ({ route }) => {
   const { team } = route.params;
   const [playersData, setPlayersData] = useState([]);
-  const [numColumns, setNumColumns] = useState(2);
 
   useEffect(() => {
     const fetchPlayersData = async () => {
@@ -22,39 +21,32 @@ const PlayerScreen = ({ route }) => {
       const playersData = await Promise.all(promises);
       setPlayersData(playersData.filter(player => player !== null));
     };
-
-    fetchPlayersData();
+    if(team){
+        fetchPlayersData();
+    }
+    
   }, [team]);
 
   const renderItem = ({ item }) => (
-    <View style={styles.playerContainer}>
-      <Image source={{ uri: item.image_path }} style={styles.playerAvatar} />
-      <View style={styles.playerInfo}>
-        <Text style={styles.playerName}>{item.name}</Text>
+    <TouchableOpacity onPress={() =>{}} style={{width:160, height:100}}>
+      <View style={{backgroundColor:"white", marginHorizontal:4, flexDirection:"row", alignItems:"center",padding:8, borderRadius:12}}>
+        <Image source={{ uri: item.image_path }} style={styles.playerAvatar} />
+        <Text numberOfLines={1} style={[styles.playerName, {width:80}]}>{item.name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
-  const keyExtractor = (item, index) => {
-    return item.player_id ? item.player_id.toString() : index.toString();
-  };
 
-  const onLayout = () => {
-    const { width } = Dimensions.get('window');
-    const maxPlayersPerRow = Math.floor(width / 150); 
-    setNumColumns(maxPlayersPerRow);
-  };
 
   return (
-    <View style={styles.container} onLayout={onLayout}>
-      <Text style={styles.heading}>Players of {team.name}</Text>
+    <View style={styles.container}>
+      <Text style={styles.heading}>Players</Text>
       <FlatList
         data={playersData}
         renderItem={renderItem}
-        keyExtractor={keyExtractor}
+        keyExtractor={(item) => item.name}
         contentContainerStyle={styles.flatListContent}
-        numColumns={numColumns}
-        key={numColumns}
+        numColumns={2} 
       />
     </View>
   );
