@@ -1,39 +1,103 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { connect } from 'react-redux';
-import { fetchTeams } from '../actions/teamActions';
+import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTeamsRequest, fetchTeamsSuccess, fetchTeamsFailure } from '../reducers/equipeReducer';
 
-const EquipeScreen = ({ teams, fetchTeams }) => {
+const EquipeScreen = () => {
+  const dispatch = useDispatch();
+  const teams = useSelector(state => state.equipe.teams);
+  const loading = useSelector(state => state.equipe.loading);
+
   useEffect(() => {
+    const fetchTeams = async () => {
+      dispatch(fetchTeamsRequest());
+      try {
+        const response = await axios.get('https://api.sportmonks.com/v3/football/teams', {headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
+        dispatch(fetchTeamsSuccess(response.data.data));
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+        dispatch(fetchTeamsFailure(error));
+      }
+    };
+
     fetchTeams();
-  }, []);
+  }, [dispatch]);
+
+  const renderItem = ({ item }) => (
+    <View style={styles.teamContainer}>
+      <Image source={{ uri: item.logo_path }} style={styles.teamLogo} />
+      <Text style={styles.teamName}>{item.name}</Text>
+    </View>
+  );
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Liste des Équipes :</Text>
+    <View style={styles.container}>
+      <Text style={styles.heading}>Équipes</Text>
       <FlatList
         data={teams}
+        renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.name}</Text>
-            <Text>Joueurs :</Text>
-            <FlatList
-              data={item.players}
-              keyExtractor={(player) => player.id.toString()}
-              renderItem={({ player }) => (
-                <Text>{player.name}</Text>
-              )}
-            />
-          </View>
-        )}
+        contentContainerStyle={styles.flatListContent}
       />
     </View>
   );
 };
 
-const mapStateToProps = (state) => ({
-  teams: state.teams.teams,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+    padding: 20,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  flatListContent: {
+    alignItems: 'center',
+  },
+  teamContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  teamLogo: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  teamName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
-export default connect(mapStateToProps, { fetchTeams })(EquipeScreen);
+export default EquipeScreen;
