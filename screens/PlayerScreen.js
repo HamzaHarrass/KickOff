@@ -5,7 +5,9 @@ import axios from 'axios';
 const PlayerScreen = ({ route }) => {
   const { team } = route.params;
   const [playersData, setPlayersData] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [text,setText] =useState('');
 
   useEffect(() => {
     const fetchPlayersData = async () => {
@@ -39,11 +41,12 @@ const PlayerScreen = ({ route }) => {
   );
 
   const handleSearch = (text) => {
+    setText(text);
     setSearchQuery(text);
     const filteredPlayers = playersData.filter(player =>
       player.name.toLowerCase().includes(text.toLowerCase())
     );
-    setPlayersData(filteredPlayers);
+    setSearchResults(filteredPlayers);
   };
 
   return (
@@ -55,13 +58,22 @@ const PlayerScreen = ({ route }) => {
         onChangeText={handleSearch}
         value={searchQuery}
       />
-      <FlatList
-        data={playersData}
+      {text != '' ?
+       <FlatList
+        data={searchResults}
         renderItem={renderItem}
         keyExtractor={(item) => item.name}
         contentContainerStyle={styles.flatListContent}
         numColumns={2}
-      />
+      /> 
+      :
+      <FlatList
+      data={playersData}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.name}
+      contentContainerStyle={styles.flatListContent}
+      numColumns={2}
+    /> }
     </View>
   );
 };
