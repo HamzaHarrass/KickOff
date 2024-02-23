@@ -9,6 +9,8 @@ import MatchesScreen from './screens/MatchesScreen';
 import MatchDetailsScreen from './screens/MatchDetailsScreen'
 import EquipesScreen from './screens/EquipesScreen';
 import PlayerScreen from './screens/PlayerScreen'
+import PlayerDetails from './screens/PlayerDetailsScreen'
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -21,6 +23,7 @@ const App = () => {
       <Stack.Screen name="MatchDetails" options={{headerShown:true, title:"", headerShadowVisible:false,headerStyle:{backgroundColor:"#F2F2F2"}}}  component={MatchDetailsScreen}/>
       <Stack.Screen name="Equipes" options={{headerShown:false }}  component={EquipesScreen} />
       <Stack.Screen name="Player" options={{headerShown:false }}  component={PlayerScreen} />
+      <Stack.Screen name="PlayerDetails" options={{headerShown:false }}  component={PlayerDetails} />
     </Stack.Navigator>
     </NavigationContainer></Provider>
   );

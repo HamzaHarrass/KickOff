@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92795a05-1e4c-44b7-a645-9aec129160c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/playerHeader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/PlayerDetailsScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/functions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/PlayerScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/PlayerScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
