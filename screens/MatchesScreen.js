@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMatches, setSelectedLeague } from '../reducers/matchesReducer';
 import { useNavigation } from '@react-navigation/native'; 
@@ -7,28 +7,59 @@ import axios from 'axios';
 
 const MatchesScreen = () => {
   const dispatch = useDispatch();
-  const matches = useSelector(state => state.matches.matches);
+  const allMatches = useSelector(state => state.matches.matches);
+  const [matches, setFilteredMatches] = useState(allMatches);
+  const [leagues, setLeagues] = useState([]);
+  const [selectedLeagueId, setSelectedLeagueId] = useState(null);
   const navigation = useNavigation(); 
 
-  const handleClick = (match) => {
-    dispatch(setSelectedLeague(match.league));
-    navigation.navigate('MatchDetails', { matchId: match.id }); 
-  };
-  
   useEffect(() => {
-    const fetchMatches = async () => {
+    const fetchLeagues = async () => {
+      try {
+        const response = await axios.get('https://api.sportmonks.com/v3/football/leagues',{headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
+        setLeagues(response.data.data);
+      } catch (error) {
+        console.error('Error fetching leagues:', error);
+      }
+    };
+    fetchLeagues();
+
+    const fetchAllMatches = async () => {
       try {
         const response = await axios.get('https://api.sportmonks.com/v3/football/fixtures?include=participants;league',{headers:{Authorization:'TL6Gh8pelPNE0dfFrjTAEc6UD3eAdgnq1PuqigxjirGAk7XCyEJkvszFiMPx'}});
         dispatch(setMatches(response.data.data));
+        setFilteredMatches(response.data.data);
       } catch (error) {
         console.error('Error fetching matches:', error);
       }
     };
-    fetchMatches();
+    fetchAllMatches();
   }, []);
 
+  useEffect(() => {
+    filterMatchesByLeague();
+  }, [selectedLeagueId]);
+
+  const filterMatchesByLeague = () => {
+    if (selectedLeagueId) {
+      const filtered = allMatches.filter(match => match.league.id === selectedLeagueId);
+      setFilteredMatches(filtered);
+    } else {
+      setFilteredMatches(allMatches);
+    }
+  };
+
+  const handleClickLeague = (leagueId) => {
+    setSelectedLeagueId(leagueId);
+  };
+
+  const handleClickMatch = (match) => {
+    dispatch(setSelectedLeague(match.league));
+    navigation.navigate('MatchDetails', { matchId: match.id }); 
+  };
+  
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleClick(item)} style={styles.matchItem}>
+    <TouchableOpacity onPress={() => handleClickMatch(item)} style={styles.matchItem}>
       <Image source={{ uri: item.league.image_path }} style={styles.teamLogo} />
       <View style={styles.matchDetails}>
         <View style={styles.teamsContainer}>
@@ -38,24 +69,37 @@ const MatchesScreen = () => {
           </View>
           <Text style={styles.vsText}>VS</Text>
           <View style={{flexDirection:"row", width:100, gap:4, justifyContent:"flex-start",backgroundColor:"white", alignItems:"center"}}>
-          <Image source={{ uri: item.participants[1].image_path }} style={styles.teamLogo} /> 
-          <Text numberOfLines={1} style={styles.teamName}>{item.participants[1].name}</Text>
+            <Image source={{ uri: item.participants[1].image_path }} style={styles.teamLogo} /> 
+            <Text numberOfLines={1} style={styles.teamName}>{item.participants[1].name}</Text>
           </View>
-          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
-  
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Matchs</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.leaguesContainer}>
+        {leagues.map((league) => (
+          <TouchableOpacity
+            key={league.id}
+            onPress={() => handleClickLeague(league.id)}
+            style={[
+              styles.leagueButton,
+              selectedLeagueId === league.id && styles.selectedLeagueButton,
+            ]}
+          >
+            <Image source={{ uri: league.image_path }} style={styles.leagueImage} />
+            <Text style={styles.leagueName}>{league.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
       <FlatList
         data={matches}
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
       />
-      {/* Vous pouvez ajouter d'autres éléments ici, par exemple un bouton pour filtrer par ligue */}
     </View>
   );
 };
@@ -126,6 +170,31 @@ const styles = StyleSheet.create({
   vsText: {
     fontSize: 16,
     marginHorizontal: 5,
+  },
+  leaguesContainer: {
+    marginBottom: 10,
+  },
+  leagueButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    marginRight: 10,
+  },
+  selectedLeagueButton: {
+    backgroundColor: 'blue',
+    borderColor: 'blue',
+  },
+  leagueImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
+    borderRadius: 20,
+  },
+  leagueName: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
