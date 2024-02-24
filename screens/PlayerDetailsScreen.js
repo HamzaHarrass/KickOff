@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { calculateAge } from '../utils/functions';
 
 const PlayerDetailsScreen = ({ route }) => {
@@ -28,6 +29,27 @@ const PlayerDetailsScreen = ({ route }) => {
                     <Text style={{fontWeight:800,fontSize:32, lineHeight:60,}}>{`${player.position.name.substring(0,2)}`}</Text>
                     <Text style={{fontWeight:500,fontSize:14, paddingVertical:4, borderTop: 2}}>position</Text>
                 </View>
+            </View>
+
+            {/* Map Section */}
+            <View style={styles.mapContainer}>
+              <MapView
+                style={styles.map}
+                initialRegion={{
+                  latitude: parseFloat(player.country.latitude),
+                  longitude: parseFloat(player.country.longitude),
+                  latitudeDelta: 10,
+                  longitudeDelta: 10,
+                }}
+              >
+                <Marker
+                  coordinate={{
+                    latitude: parseFloat(player.country.latitude),
+                    longitude: parseFloat(player.country.longitude),
+                  }}
+                  title={player.country.name}
+                />
+              </MapView>
             </View>
         </ScrollView>
     </SafeAreaView>
@@ -65,6 +87,17 @@ const styles = StyleSheet.create({
   },
   playerBirth: {
     fontSize: 18,
+  },
+  mapContainer: {
+    height: 300,
+    marginHorizontal: 16,
+    marginTop: 24,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  map: {
+    flex: 1,
+    borderRadius: 20,
   },
 });
 
