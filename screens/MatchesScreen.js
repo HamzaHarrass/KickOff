@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ImageBackground, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMatches, setSelectedLeague } from '../reducers/matchesReducer';
 import { useNavigation } from '@react-navigation/native'; 
@@ -79,7 +79,9 @@ const MatchesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Matchs</Text>
+      <ImageBackground source={require('../assets/Mask Group.png')} style={styles.headerImage} >
+      <Text style={styles.headerText}>Matchs</Text>
+      </ImageBackground>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.leaguesContainer}>
         {leagues.map((league) => (
           <TouchableOpacity
@@ -110,11 +112,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     padding: 20,
   },
-  heading: {
+  headerImage: {
+    width: '100%',
+    height: 150,
+    marginLeft:70,
+    resizeMode: 'cover',
+  },
+  headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
+    marginTop:60,
+    color:'#7F36C7',
   },
   matchItem: {
     flexDirection: 'column',
@@ -183,8 +191,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   selectedLeagueButton: {
-    backgroundColor: 'blue',
-    borderColor: 'blue',
+    backgroundColor: '#7F36C7',
+    borderColor: 'white',
   },
   leagueImage: {
     width: 40,
