@@ -50,3 +50,7 @@ npm start
 ## API
 - L'API utilisée pour les matchs de football est fournie par SportMonks. Pour y accéder, veuillez créer un compte et obtenir un jeton d'accès sur SportMonks.
 ---
+## Happy coding! 🚀
+```vbnet
+Cette mise en forme utilise des séparateurs horizontaux pour délimiter les sections, des blocs de code avec coloration syntaxique, des listes à puces pour les fonctionnalités, et des liens cliquables pour l'API SportMonks et les commandes d'installation. Vous pouvez personnaliser davantage en ajoutant des images, des captures d'écran, des vidéos, ou tout autre élément visuel qui pourrait être pertinent pour votre projet.
+```
