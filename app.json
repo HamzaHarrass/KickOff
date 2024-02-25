@@ -4,12 +4,14 @@
     "slug": "KickOff",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo_pour_application_mobile_de_footballd_KickOf-removebg-preview.png",
+    "icon": "./assets/Splash.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Nous_souhaitons_que_le_logo_de_notre_applicatio-removebg-preview.png",
+      "image": "./assets/Splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7F36C7",
+      "width": 10,  
+      "height": 10  
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo_pour_application_mobile_de_footballd_KickOf-removebg-preview.png",
+        "foregroundImage": "./assets/Splash.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/logo_pour_application_mobile_de_footballd_KickOf-removebg-preview.png"
+      "favicon": "./assets/Splash.png"
     }
   }
 }
