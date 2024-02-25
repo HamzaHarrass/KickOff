@@ -6,15 +6,20 @@
 ![Jest](https://img.shields.io/badge/Jest-v27.0.6-red)
 ![Docker](https://img.shields.io/badge/Docker-v20.10.8-blue)
 
+<div align="center">
+  <img src="https://placekitten.com/200/200" alt="KickOff Logo">
+</div>
+
 KickOff est une application mobile développée avec React Native Expo qui permet aux utilisateurs de visualiser les matchs de football en direct. Les utilisateurs peuvent suivre leurs équipes et joueurs préférés, obtenir des mises à jour en temps réel sur les scores des matchs et consulter les statistiques détaillées des joueurs. L'application offre une expérience complète aux passionnés de football pour rester connectés avec l'action des matchs les plus récents.
 
-## Fonctionnalités
+---
 
-- Affichage des matchs en direct et des matchs passés
-- Visualisation des détails des matchs (équipes, date, heure, ligues, etc.)
-- Recherche de joueurs par nom
-- Affichage des détails des joueurs (taille, poids, date de naissance, etc.)
-- Sauvegarde des matchs favoris
+- 📱 Affichage des matchs en direct et des matchs passés
+- 📊 Visualisation des détails des matchs (équipes, date, heure, ligues, etc.)
+- 🔍 Recherche de joueurs par nom
+- 🌟 Sauvegarde des matchs favoris
+
+---
 
 ## Installation
 
