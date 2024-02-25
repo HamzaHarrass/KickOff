@@ -37,3 +37,6 @@ Lancez l'application :
 ```bash
 npm start
 ```
+---
+## Tests
+- Les tests de cette application sont réalisés avec Jest et Jest-Expo. Au moins deux composants sont soumis à des tests.
