@@ -23,3 +23,12 @@ KickOff est une application mobile développée avec React Native Expo qui perme
 ```bash
 git clone https://github.com/HamzaHarrass/KickOff.git
 ```
+## Installez les dépendances :
+```bash
+cd KickOff
+npm install
+```
+Lancez l'application :
+```bash
+npm start
+```
