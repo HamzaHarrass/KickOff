@@ -54,3 +54,7 @@ npm start
 ```vbnet
 Cette mise en forme utilise des séparateurs horizontaux pour délimiter les sections, des blocs de code avec coloration syntaxique, des listes à puces pour les fonctionnalités, et des liens cliquables pour l'API SportMonks et les commandes d'installation. Vous pouvez personnaliser davantage en ajoutant des images, des captures d'écran, des vidéos, ou tout autre élément visuel qui pourrait être pertinent pour votre projet.
 ```
+```vbnet
+In this updated version, I've added icons to each section title using emojis for simplicity and clarity. You can adjust the emojis or FontAwesome icons as needed to fit your project's style and theme. This should help make each section stand out and be easily recognizable.
+```
+
