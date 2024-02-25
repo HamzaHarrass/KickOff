@@ -40,3 +40,13 @@ npm start
 ---
 ## Tests
 - Les tests de cette application sont réalisés avec Jest et Jest-Expo. Au moins deux composants sont soumis à des tests.
+  
+## Gestion de l'état
+- Redux est utilisé pour gérer l'état de l'application.
+
+## Docker
+- L'application est dockerisée pour une installation facile.
+
+## API
+- L'API utilisée pour les matchs de football est fournie par SportMonks. Pour y accéder, veuillez créer un compte et obtenir un jeton d'accès sur SportMonks.
+---
