@@ -1,4 +1,4 @@
-# KickOff - Application mobile pour suivre les matchs de football en direct
+#⚽KickOff - Application mobile pour suivre les matchs de football en direct
 
 ![React Native](https://img.shields.io/badge/React%20Native-v0.64-blue)
 ![Redux](https://img.shields.io/badge/Redux-v4.1.0-purple)
