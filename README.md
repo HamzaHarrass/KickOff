@@ -10,7 +10,7 @@
   <img src="https://i.postimg.cc/H8DKfkd3/vecteezy-kick-off-football-typography-t-shirt-print-free-vector.png" alt="KickOff Logo">
 </div>
 
-KickOff est une application mobile développée avec React Native Expo qui permet aux utilisateurs de visualiser les matchs de football en direct. Les utilisateurs peuvent suivre leurs équipes et joueurs préférés, obtenir des mises à jour en temps réel sur les scores des matchs et consulter les statistiques détaillées des joueurs. L'application offre une expérience complète aux passionnés de football pour rester connectés avec l'action des matchs les plus récents.
+⚽ KickOff est une application mobile développée avec React Native Expo qui permet aux utilisateurs de visualiser les matchs de football en direct. Les utilisateurs peuvent suivre leurs équipes et joueurs préférés, obtenir des mises à jour en temps réel sur les scores des matchs et consulter les statistiques détaillées des joueurs. L'application offre une expérience complète aux passionnés de football pour rester connectés avec l'action des matchs les plus récents.
 
 ---
 
@@ -21,14 +21,14 @@ KickOff est une application mobile développée avec React Native Expo qui perme
 
 ---
 
-## Installation
+## 🛠️Installation
 
 1. Clonez le dépôt :
 
 ```bash
 git clone https://github.com/HamzaHarrass/KickOff.git
 ```
-## Installez les dépendances :
+## 🚀Installez les dépendances :
 ```bash
 cd KickOff
 npm install
@@ -38,16 +38,16 @@ Lancez l'application :
 npm start
 ```
 ---
-## Tests
+## ✅Tests
 - Les tests de cette application sont réalisés avec Jest et Jest-Expo. Au moins deux composants sont soumis à des tests.
   
-## Gestion de l'état
+## 🔄Gestion de l'état
 - Redux est utilisé pour gérer l'état de l'application.
 
-## Docker
+## 🐳Docker
 - L'application est dockerisée pour une installation facile.
 
-## API
+## 📡API
 - L'API utilisée pour les matchs de football est fournie par SportMonks. Pour y accéder, veuillez créer un compte et obtenir un jeton d'accès sur SportMonks.
 ---
 ## Happy coding! 🚀
