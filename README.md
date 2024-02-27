@@ -37,6 +37,33 @@ Lancez l'application :
 ```bash
 npm start
 ```
+## 📂 Structure du Projet
+
+- 📁 .expo: Configuration spécifique à Expo.
+- 📁 .idea: Configuration spécifique à l'IDE (par exemple, IntelliJ IDEA).
+- 📁 assets 🌟: Fichiers multimédias, tels que des images, utilisés dans l'application.
+- 📁 node_modules 📦: Les modules npm installés.
+- 📁 reducers 🔄: Les fichiers de réduction Redux pour gérer l'état de l'application.
+  - 📄 matchesReducer.js 📈: Réducteur pour les données des matchs.
+  - 📄 equipeReducer.js 🛡️: Réducteur pour les données des équipes.
+- 📁 screens 📱: Les composants d'écran de l'application.
+  - 📄 HomeScreens.js 🏠: Écran d'accueil de l'application.
+  - 📄 MatchesScreen.js ⚽: Écran pour afficher les matchs en direct et passés.
+  - 📄 MatchDetailsScreens.js ℹ️: Écran pour afficher les détails d'un match.
+  - 📄 EquipesScreens.js 🏟️: Écran pour afficher les équipes.
+  - 📄 PlayerScreen.js 🧑‍🤝‍🧑: Écran pour afficher les joueurs.
+  - 📄 PlayerDetailsScreen.js 🧑‍🎓: Écran pour afficher les détails d'un joueur.
+- 📁 utils 🛠️: Fonctions utilitaires utilisées dans l'application.
+  - 📄 functions.js 🔧: Fonctions utilitaires diverses.
+- 📄 .gitignore 🚫: Liste des fichiers et dossiers ignorés par Git.
+- 📄 App.js 🚀: Point d'entrée de l'application.
+- 📄 app.json 📱: Configuration de l'application Expo.
+- 📄 babel.config.js 🛠️: Configuration Babel.
+- 📄 package-lock.json 🔒: Verrouillage des dépendances du package npm.
+- 📄 package.json 📦: Configuration du package npm.
+- 📄 README.md ℹ️: Documentation du projet (ce fichier).
+- 📄 store.js 🗄️: Configuration du store Redux.
+
 ---
 ## ✅Tests
 - Les tests de cette application sont réalisés avec Jest et Jest-Expo. Au moins deux composants sont soumis à des tests.
