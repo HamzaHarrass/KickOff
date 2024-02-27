@@ -1,21 +1,24 @@
-# Use an official Node.js runtime as a base image
 FROM node:20-buster-slim
 
-# Set the working directory inside the container
-WORKDIR /app
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+ARG PORT=19006
+ENV PORT $PORT
+EXPOSE $PORT 19001 19002
 
-# Install app dependencies
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH /home/node/.npm-global/bin:$PATH
+RUN npm i --unsafe-perm --allow-root -g npm@latest expo-cli@latest
+
+RUN mkdir /opt/kickoff
+WORKDIR /opt/kickoff
+ENV PATH /opt/kickoff/.bin:$PATH
+COPY ./package.json ./package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application code
+WORKDIR /opt/kickoff/app
+
 COPY . .
 
-# Expose the port that the app will run on
-EXPOSE 19006 
-
-# Start the React Native packager
-ENTRYPOINT ["npm", "run"]
-CMD ["android"]
+CMD ["npm","start"]
