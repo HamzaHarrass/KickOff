@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ImageBackground, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { setMatches, setSelectedLeague } from '../reducers/matchesReducer';
+import { setMatches, setSelectedLeague, toggleFavorite } from '../reducers/matchesReducer';
 import { useNavigation } from '@react-navigation/native'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const MatchesScreen = () => {
@@ -57,9 +58,32 @@ const MatchesScreen = () => {
     dispatch(setSelectedLeague(match.league));
     navigation.navigate('MatchDetails', { matchId: match.id }); 
   };
+
+  const handleFavorite = async (match) => {
+    dispatch(toggleFavorite(match));
+  try {
+    const storedFavorites = await AsyncStorage.getItem('favoriteMatches');
+    let favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+    if (match.isFavorite) {
+      favorites.push(match);
+    } else {
+      favorites = favorites.filter(favorite => favorite.id !== match.id);
+    }
+    await AsyncStorage.setItem('favoriteMatches', JSON.stringify(favorites));
+  } catch (error) {
+    console.error('Error saving favorite match:', error);
+  }
+  };
+
+  const handleNavigateToFavorites = () => {
+    navigation.navigate('Favorites'); 
+  };
   
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => handleClickMatch(item)} style={styles.matchItem}>
+      <TouchableOpacity onPress={() => handleFavorite(item)} style={styles.favoriteIcon}>
+        <Image source={item.isFavorite ? require('../assets/pouces-vers-le-haut.png') : require('../assets/icons8-favorite-30.png')} style={styles.favoriteIconImage} />
+      </TouchableOpacity>
       <Image source={{ uri: item.league.image_path }} style={styles.teamLogo} />
       <View style={styles.matchDetails}>
         <View style={styles.teamsContainer}>
@@ -102,6 +126,9 @@ const MatchesScreen = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
       />
+      <TouchableOpacity onPress={handleNavigateToFavorites} style={styles.favoriteButton}>
+        <Text style={styles.favoriteButtonText}>Favorites</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -159,6 +186,17 @@ const styles = StyleSheet.create({
     color: '#555',
     marginBottom: 5,
   },
+  favoriteIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 1,
+  },
+  favoriteIconImage: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+  },
   teamLogo: {
     width: 30,
     height: 30,
@@ -202,6 +240,18 @@ const styles = StyleSheet.create({
   },
   leagueName: {
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  favoriteButton: {
+    backgroundColor: '#7F36C7',
+    paddingVertical: 10,
+    alignItems: 'center',
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  favoriteButtonText: {
+    color: 'white',
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

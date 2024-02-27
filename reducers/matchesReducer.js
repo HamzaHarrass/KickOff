@@ -15,9 +15,15 @@ const matchesSlice = createSlice({
     setSelectedLeague(state, action) {
       state.selectedLeague = action.payload;
     },
+    toggleFavorite(state, action) {
+      const matchIndex = state.matches.findIndex(match => match.id === action.payload.id);
+      if (matchIndex !== -1) {
+        state.matches[matchIndex].isFavorite = !state.matches[matchIndex].isFavorite;
+      }
+    },
   },
 });
 
-export const { setMatches, setSelectedLeague } = matchesSlice.actions;
+export const { setMatches, setSelectedLeague, toggleFavorite } = matchesSlice.actions;
 
 export default matchesSlice.reducer;

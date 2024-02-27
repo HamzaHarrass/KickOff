@@ -10,6 +10,7 @@ import MatchDetailsScreen from './screens/MatchDetailsScreen'
 import EquipesScreen from './screens/EquipesScreen';
 import PlayerScreen from './screens/PlayerScreen'
 import PlayerDetails from './screens/PlayerDetailsScreen'
+import FavoriteMatchesScreen from './screens/FavoriteMatchesScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
    <Stack.Navigator>
       <Stack.Screen name="Home" options={{headerShown:false}}  component={HomeScreen} />
       <Stack.Screen name="Matches" options={{headerShown:false}}  component={MatchesScreen} />
+      <Stack.Screen name="Favorites" options={{headerShown:false}}  component={FavoriteMatchesScreen} />
       <Stack.Screen name="MatchDetails" options={{headerShown:true, title:"", headerShadowVisible:false,headerStyle:{backgroundColor:"#F2F2F2"}}}  component={MatchDetailsScreen}/>
       <Stack.Screen name="Equipes" options={{headerShown:false }}  component={EquipesScreen} />
       <Stack.Screen name="Player" options={{headerShown:false }}  component={PlayerScreen} />
